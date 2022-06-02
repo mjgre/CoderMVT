@@ -1,0 +1,28 @@
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+
+<div class="container">
+   <div class="row">
+     <div class="col">
+      <h1>CARGAR ASISTENTES</h1>
+      <h4>Informar quien asistira al evento, y que bebida o comida llevara al mmismo. En caso de no llevar nada, declarar: "Nada"</h4>
+     </div>
+     </div>
+     <dov class="row">
+     <div class="col">
+      <form action="/familia/eventocarga/" method="post">
+         {% csrf_token %} 
+         {% bootstrap_form form%}
+         {% bootstrap_button "Guardar" button_type="submit" button_class="btn-primary" %}
+      </form>
+     </div>
+   </div>
+ </div>
+ 

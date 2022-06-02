@@ -1,0 +1,55 @@
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Tareas de los miembros de mi familia</h1>
+        {% url 'tareascarga' as tareas_url %}
+        {% bootstrap_button "Agregar" size="sm" button_class="btn-primary" button_type="link" href=tareas_url %}
+   
+      </div>
+    </div>
+    <div class="row">
+        <div class="col">
+         {% if tareas %}
+          <table class="table">
+            <thead>
+                <th scope="col">Identificador</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Tarea</th>
+                <th scope="col">Horario</th>
+                <th scope="col">Duracion</th>
+                <th scope="col">Acciones</th>
+            </thead>
+        
+            {% for p in tareas %}
+            <tbody>
+                <tr>
+                    <th scope="row">{{p.id}} </th>
+                    <td> {{p.nombre}} </td>
+                    <td> {{p.apellido}} </td>
+                    <td> {{p.tarea}} </td>
+                    <td> {{p.horario}} </td>
+                    <td> {{p.duracion}} </td>
+                    {% url 'borrar-tarea' identificador=p.id as borrar_url %}
+                    <td>{% bootstrap_button "Borrar" size="sm" button_class="btn-danger" button_type="link" href=borrar_url %} </td>
+                </tr>  
+            </tbody>
+            {% endfor %}
+          </table>
+        {% else %}
+            <p>No hay ningun familiar cargado</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+ 

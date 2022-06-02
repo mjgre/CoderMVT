@@ -1,0 +1,56 @@
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Asistentes al evento</h1>
+        {% url 'eventocarga' as evento_url %}
+        {% bootstrap_button "Agregar" size="sm" button_class="btn-primary" button_type="link" href=evento_url %}
+   
+      </div>
+    </div>
+    <div class="row">
+        <div class="col">
+         {% if evento %}
+          <table class="table">
+            <thead>
+                <th scope="col">Identificador</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Asistencia</th>
+                <th scope="col">Comida</th>
+                <th scope="col">Bebida</th>
+                <th scope="col">Acciones</th>
+            </thead>
+        
+            {% for p in evento %}
+            <tbody>
+                <tr>
+                    <th scope="row">{{p.id}} </th>
+                    <td> {{p.nombre}} </td>
+                    <td> {{p.apellido}} </td>
+                    <td> {{p.Asistencia}} </td>
+                    <td> {{p.comida}} </td>
+                    <td> {{p.bebida}} </td>
+                    {% url 'borrar-evento' identificador=p.id as borrar_url %}
+                    <td>{% bootstrap_button "Borrar" size="sm" button_class="btn-danger" button_type="link" href=borrar_url %}</td>
+                  </tr>  
+            </tbody>
+            {% endfor %}
+          </table>
+        {% else %}
+            <p>No tienes asistentes cargados hasta el momento</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+

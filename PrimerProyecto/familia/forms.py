@@ -24,3 +24,7 @@ class TareasForm(forms.Form):
     tarea = forms.CharField(label="Tarea")
     horario = forms.IntegerField(label="Horario")
     duracion = forms.IntegerField(label="Duracion de la tarea")
+
+
+class BuscarPersonasForm(forms.Form):
+    palabra_a_buscar = forms.CharField(label="Buscar")

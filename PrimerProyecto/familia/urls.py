@@ -12,4 +12,5 @@ urlpatterns = [
     path('tareas/', views.indexTa, name="tareas"),
     path('eventocarga/', views.evento, name="eventocarga"),
     path('tareascarga/', views.tareas, name="tareascarga"),
+    path('buscar/', views.buscar, name="buscar"),
 ]

@@ -1,14 +1,9 @@
+{% extends "familia\index.html" %}
+
 {% load bootstrap5 %}
 
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
-
-
-<div class="container">
+{% block navegacion %}
+  <div class="container">
     <div class="row">
       <div class="col">
         <h1>Tareas de los miembros de mi familia</h1>
@@ -17,7 +12,7 @@
    
       </div>
     </div>
-    <div class="row">
+      <div class="row">
         <div class="col">
          {% if tareas %}
           <table class="table">
@@ -46,10 +41,10 @@
             </tbody>
             {% endfor %}
           </table>
-        {% else %}
+          {% else %}
             <p>No hay ningun familiar cargado</p>
-        {% endif %}
+         {% endif %}
+        </div>
       </div>
-    </div>
   </div>
- 
+{% endblock  %}

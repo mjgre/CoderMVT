@@ -1,14 +1,9 @@
+{% extends "familia\index.html" %}
+
 {% load bootstrap5 %}
 
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
-
-
-<div class="container">
+{% block navegacion %}
+  <div class="container">
     <div class="row">
       <div class="col">
         <h1>Asistentes al evento</h1>
@@ -18,7 +13,7 @@
       </div>
     </div>
     <div class="row">
-        <div class="col">
+       <div class="col">
          {% if evento %}
           <table class="table">
             <thead>
@@ -46,11 +41,12 @@
             </tbody>
             {% endfor %}
           </table>
-        {% else %}
+          {% else %}
             <p>No tienes asistentes cargados hasta el momento</p>
-        {% endif %}
-      </div>
+          {% endif %}
+       </div>
     </div>
   </div>
+{% endblock  %}
   
 

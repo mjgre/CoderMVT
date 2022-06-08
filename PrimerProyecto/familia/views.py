@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.template import loader
 from django.shortcuts import render
-from familia.forms import PersonaForm
+from familia.forms import BuscarPersonasForm, PersonaForm
 from familia.forms import EventoForm
 from familia.forms import TareasForm
 
@@ -158,3 +158,16 @@ def borrarTa(request, identificador):
         return HttpResponseRedirect("/familia/tareas/")
     else:
         return HttpResponseBadRequest("Error no conzco ese metodo para esta request")
+
+
+def buscar(request):
+    
+    if request.GET.get("palabra_a_buscar") and request.method == "GET":
+        form_busqueda = BuscarPersonasForm(request.GET)
+        if form_busqueda.is_valid():
+            personas = Persona.objects.filter(nombre__icontains=request.GET.get("palabra_a_buscar"))
+            return  render(request, 'familia/index.html', {"personas": personas, "resultados_busqueda":True})
+
+    elif request.method == "GET":
+        form_busqueda = BuscarPersonasForm()
+        return render(request, 'familia/form_busqueda.html', {"form_busqueda": form_busqueda})

@@ -8,12 +8,24 @@
 {% bootstrap_messages %}
 
 
+<ul class="nav bg-dark fixed">
+  <li class="nav-item">
+    <a class="nav-link active" href="{%url  'index' %}"> Miembros de Mi Familia</a>
+    <a class="nav-link active" href="{%url  'evento' %}"> Evento</a>
+    <a class="nav-link active" href="{%url  'tareas' %}"> Tareas del evento</a>
+  </li>
+</ul>
+
+
+{% block navegacion %}
 <div class="container">
     <div class="row">
       <div class="col">
         <h1>Miembros de Mi Familia</h1>
         {% url 'agregar' as agregar_url %}
         {% bootstrap_button "Agregar" size="sm" button_class="btn-primary" button_type="link" href=agregar_url %}
+        {% url 'buscar' as buscar_url %}
+        {% bootstrap_button "Buscar" button_class="btn-success" button_type="link" href=buscar_url %}  
    
       </div>
     </div>
@@ -52,11 +64,11 @@
       </div>
     </div>
   </div>
+  {% endblock %}
 
 
  
-  <a class="btn btn-primary" href="evento" role="button">"Evento"</a>
-  <a class="btn btn-primary" href="tareas" role="button">"Tareas del evento"</a>
+
   
   
 
